@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 8 - Funciones básicas</title>
+
+<script type="text/javascript">
+
+        var resultado = "";
+		var numero1 = 0;
+		var b = new Array('','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciseis','diecisiete','dieciocho','diecinueve','veinte');
+		var a = new Array('','ciento','doscientos','trescientos','cuatrocientos','quinientos','seiscientos','setecientos','ochocientos','novecientos');
+		var c = new Array('','','veinti','treinta','cuarenta','cincuenta','sesenta','setenta','ochenta','noventa');
+		var d1 = new Array('',' mil ',' un millon ',' mil ',' un billon ',' mil ',' un trillon ', ' mil ', ' un cuatrillon ', ' mil ', ' un quintillon ', ' mil ');
+		var d2 = new Array('',' mil ',' millones ',' mil ',' billones ',' mil ',' trillones ', ' mil ', ' cuatrillones ', ' mil ', ' quintillones ', ' mil ');
+		var numero = prompt("Introduce un numero de hasta 36 digitos");
+		var terminacion = 0;
+
+		while (numero.length % 3 != 0) {
+
+			numero = "0" + numero; //Le añado 0 a la izquierda hasta que la longitud sea divisible entre 3.
+
+		}
+
+		terminacion = numero.length / 3 - 1; //Empiezo con las terminaciones de izquierda a derecha
+
+		for (i=0; i<numero.length; i+=3) {
+			
+			if (i+4 > numero.length) { //Compruebo si al número aún le queda una terminación (si son los últimos 3 dígitos, no tiene terminación)
+				resultado += pasonumeroletra(numero.substring(i, i+3));
+			} else {
+				if (numero.substring(i+2,i+3) == "1") { //Compruebo si el número acaba "en singular o en plural"
+					resultado += d1[terminacion];
+				} else {
+					resultado += pasonumeroletra(numero.substring(i, i+3)) + d2[terminacion];
+				}
+			}
+
+			terminacion--;
+
+		}
+		
+		console.log("El numero " + numero + " es " + resultado);
+
+		// FUNCION CONVERSORA DE NUMEROS A CADENAS DE 1 A 999
+		
+		function pasonumeroletra(num) {
+
+				centenas = parseInt(num.substring(0,1));
+				hastaveinte = parseInt(num.substring(1,3));
+				decenas = parseInt(num.substring(1,2));
+				unidades = parseInt(num.substring(2,3));
+
+				//console.log("Centenas: " + centenas);
+				//console.log("Decenas: " + decenas);
+				//console.log("Unidades: " + unidades);
+				//console.log("Hasta veinte: " + hastaveinte);
+
+				console.log(centenas + ' - ' + decenas + ' - ' + unidades);
+
+				resu = a[centenas] + ' ';
+
+				if (hastaveinte<=20) // Evalúa si las dos ultimas cifras son uno de los "Números reservados"
+				   {resu = resu + b[hastaveinte]}
+				else
+				   {resu = resu + c[decenas];
+				   
+					if (decenas == 2) // Evalúa si es veintix o treinta Y x (por ejemplo: veintidos, treinta Y dos.).
+						{ resu = resu + b[unidades]}
+					else { 
+							if (unidades!=0) { 
+								resu = resu + ' y ' + b[unidades] 
+							}	
+						}		
+					};
+				if (resu == 'ciento ') {resu = 'cien'} //El 100 es otro "Número reservado", porque no acaba en "to/tos", como doscienTOS.
+
+			return resu;
+		 
+		}
+
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

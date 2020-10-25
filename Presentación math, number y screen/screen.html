@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Objeto screen</title>
+</head>
+<body>
+    <div class='menu' style="width: 500px"><h1>Objeto Screen</h1>
+        <p id="parrafo"></p>
+        <p id="parrafo2"></p>
+        <p id="parrafo3"></p>
+        <p id="parrafo4"></p>
+    </div>
+
+    <script>
+        var parrafo = document.getElementById("parrafo");
+        var parrafo2 = document.getElementById("parrafo2");
+        var parrafo3 = document.getElementById("parrafo3");
+        var parrafo4 = document.getElementById("parrafo4");
+
+        parrafo.innerHTML = "Esta pantalla es de <strong>" + screen.width + " x " + screen.height + "</strong> píxeles.";
+        parrafo2.innerHTML = "de los cuales están disponibles <strong>" + screen.availWidth + " x " + screen.availHeight + "</strong>. ";
+        parrafo3.innerHTML = "La profundidad de color de esta pantalla es de <strong>" + screen.colorDepth + "</strong> bits."
+        parrafo4.innerHTML = "La profundidad de píxeles de esta pantalla es de <strong>" + screen.pixelDepth + "</strong> bits."
+ </script>
+</body>
+</html>

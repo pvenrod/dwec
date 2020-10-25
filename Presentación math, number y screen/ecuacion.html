@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Calculadora</title>
+</head>
+<body>
+
+    <span id="ecuacion"></span><br>
+    <button onclick="calcular()">Calcular</button><br><br>
+    <span id="x1"></span><br>
+    <span id="x2"></span>
+
+    <script>
+
+        // Crea un programa que invente una ecuación de segundo grado y la resuelva por sí mismo.
+
+        var a = Math.round(Math.random() * 200 - 100);
+        var b = Math.round(Math.random() * 200 - 100);
+        var c = Math.round(Math.random() * 200 - 100);
+        var sig1 = sacarSigno(b);
+        var sig2 = sacarSigno(c);
+        var result1, result2;
+
+        document.getElementById("ecuacion").innerHTML = a + "x<sup>2</sup> " + sig1 + " " + b + "x " + sig2 + " "+ c + " = 0";
+
+        
+
+        function calcular() {
+
+            result1 = ((-b) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+            result2 = ((-b) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+
+            if (Number.isNaN(result1)) {
+
+                document.getElementById("x1").innerHTML = "El discriminante es menor que 0, por lo que no existe una solución real.";
+            
+            }
+
+            else {
+
+                document.getElementById("x1").innerHTML = result1;
+                document.getElementById("x2").innerHTML = result2;
+
+            }
+
+            
+        }
+
+       
+
+        function sacarSigno(num) {
+
+            if (num - Math.abs(num) == 0) {
+
+                signo = "+";
+
+            }
+            else {
+
+                signo = "";
+
+            }
+
+            return signo;
+
+        }
+
+    </script>
+
+</body>
+</html>

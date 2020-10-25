@@ -1,0 +1,36 @@
+body {
+    font-family: arial;
+}
+
+.menu {
+    padding: 10px 30px 30px 30px;
+    border-radius: 30px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px;
+    width: 350px;
+    background-color: #ffe9e9;
+    box-shadow: 0px 0px 5px grey;
+    text-align: center;
+}
+.menu:hover {
+    background-color: #fddede;
+    box-shadow: 0px 0px 10px grey;
+}
+
+h1 {
+    color: red;
+}
+
+.menu a, .menu a:visited:hover {
+    color: red;
+}
+
+.menu a:visited {
+    color: rgb(146, 0, 0);
+}
+
+.menu p input {
+    width: 100px;
+}

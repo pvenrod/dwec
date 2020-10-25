@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos/estilos.css">
+    <title>Planos Plaza Vieja</title>
+</head>
+<body>
+    <input type="range" value="1950" min="1950" max="1970" step="10" onchange="cambiarAnyo(this.value)">&nbsp;&nbsp;
+    <span id="anyoLabel">1950</span>
+</body>
+<script>
+
+    var ajax = new XMLHttpRequest;
+    var resultado = [];
+
+
+    ajax.open("POST", "recogerDatos.php?anyo=1950", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            resultado = JSON.parse(this.responseText);
+            console.log(resultado);
+            mapear();
+
+        }
+
+    }
+    
+
+    var canvas = [];
+    var ctx = []
+    var img = [];
+    var desc = [];
+
+    function mapear() {
+
+        for (i = 0; i < Object.keys(resultado).length; i++) {
+
+            canvas[i] = document.createElement("canvas");
+            canvas[i].setAttribute("class","canvas");
+            canvas[i].setAttribute("id","canvas"+i);
+            canvas[i].width = 500;
+            canvas[i].height = 500;
+
+            ctx[i] = canvas[i].getContext("2d");
+
+            img[i] = new Image();
+            img[i].src = resultado[i].imagen;
+
+            desc[i] = resultado[i].descripcion;
+
+            document.body.appendChild(canvas[i]);
+            
+
+        }
+
+        setTimeout(function() {
+
+            for (i = 0; i < Object.keys(resultado).length; i++) {
+
+                ctx[i].drawImage(img[i],0,0);
+
+            }
+
+        },200)
+        
+        var ultCanvas = document.createElement("canvas");
+        ultCanvas.setAttribute("class","canvas");
+        ultCanvas.setAttribute("id","ultCanvas");
+        ultCanvas.setAttribute("onclick","verificarClick(event)");
+        ultCanvas.width = 500;
+        ultCanvas.height = 500;
+        document.body.appendChild(ultCanvas);
+
+
+    }
+
+    function verificarClick(event) {
+
+        var x = event.x - canvas[1].offsetLeft;
+        var y = event.y - canvas[1].offsetTop;
+
+        for (i=0; i<canvas.length; i++) {
+
+            if (ctx[i].getImageData(x, y, canvas[1].width, canvas[1].height).data[3] != 0) {
+
+                console.log(desc[i]);
+
+            }
+
+        }
+
+    }
+    
+
+    function cambiarAnyo(anyo) {
+
+        for (i = 0; i < canvas.length; i++) {
+            canvas[i].remove();
+        }
+
+        canvas = [];
+        ctx = []
+        img = [];
+        desc = [];
+        resultado = [];
+
+        document.getElementById("anyoLabel").innerHTML = anyo;
+
+        var ajax = new XMLHttpRequest;
+
+
+        ajax.open("POST", "recogerDatos.php?anyo="+anyo, true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+
+                resultado = JSON.parse(this.responseText);
+                console.log(resultado);
+                mapear();
+
+            }
+
+        }
+
+    }
+</script>
+</html>

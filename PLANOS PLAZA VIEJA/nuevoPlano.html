@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Objeto screen</title>
+</head>
+<body>
+
+    <div>
+        <span id="anyito">Introduce el año: <input value="1900" type="number" name="anyo" id="anyo"></span><br>
+        <span id="cantidita">Introduce la cantidad de imágenes: <input value="1" type="number" name="cantidad" id="cantidad"></span><br>
+        <button id="botoncito" onclick="generarFormulario(parseInt(document.getElementById('anyo').value), parseInt(document.getElementById('cantidad').value))">Siguiente paso</button>
+    </div>
+
+    <script>
+        //setInterval(function() {
+            //location.href = "nuevoPlano.html";
+        //,1000)
+
+        function generarFormulario(anyo, cantidad) {
+            document.getElementById("anyito").remove();
+            document.getElementById("cantidita").remove();
+            document.getElementById("botoncito").remove();
+
+
+            console.log(anyo);
+            console.log(cantidad);
+
+            var formulario = document.createElement("form");
+            formulario.setAttribute("method","post");
+            formulario.setAttribute("action","enviarFormulario.php");
+            formulario.setAttribute("enctype","multipart/form-data");
+            document.body.appendChild(formulario);
+
+            for (i=1;i<=cantidad;i++) {
+
+                var span = document.createElement("span");
+                span.innerHTML = "Imagen" + i + ":&nbsp;&nbsp;";
+
+                var inputImg = document.createElement("input");
+                inputImg.setAttribute("type","file");
+                inputImg.setAttribute("name","img"+i);
+
+                var inputText = document.createElement("input");
+                inputText.setAttribute("type","text");
+                inputText.setAttribute("placeholder","Descripción...")
+                inputText.setAttribute("name","text" + i)
+
+                formulario.appendChild(span);
+                formulario.appendChild(inputImg);
+                formulario.appendChild(inputText);
+                formulario.appendChild(document.createElement("br"));
+
+            }
+
+            var inputHidden = document.createElement("input");
+                inputHidden.setAttribute("type","hidden");
+                inputHidden.setAttribute("name","cantidad");
+                inputHidden.setAttribute("value",cantidad);
+
+            var inputHidden2 = document.createElement("input");
+                inputHidden2.setAttribute("type","hidden");
+                inputHidden2.setAttribute("name","anyo");
+                inputHidden2.setAttribute("value",anyo);
+
+            var submit = document.createElement("input");
+                submit.setAttribute("type","submit");
+                submit.setAttribute("value","Enviar plano");
+
+            formulario.appendChild(inputHidden);
+            formulario.appendChild(inputHidden2);
+            formulario.appendChild(document.createElement("br"));
+            formulario.appendChild(submit);
+
+
+        }
+    </script>
+
+</body>
+</html>

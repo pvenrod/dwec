@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Objeto math</title>
+</head>
+<body>
+    <div class='menu'><h1>Objeto Math</h1>
+        <h2>Métodos de la clase Math</h2>
+        <p><a href="" onclick="alert(Math.sqrt(parseInt(document.getElementById('raiz').value)));">Raíz cuadrada de:</a>&nbsp;&nbsp;<input type="number" value="1" min="1" id="raiz"></p>
+        <p><a href="" onclick="alert(Math.cbrt(parseFloat(document.getElementById('cuberoot').value)));">Raíz cúbica de:</a>&nbsp;&nbsp;<input type="number" value="1" id="cuberoot"></p>
+        <p><a href="" onclick="alert(Math.abs(parseInt(document.getElementById('abs').value)));">Valor absoluto de:</a>&nbsp;&nbsp;<input type="number" value="1" id="abs"></p>
+        <p><a href="" onclick="alert(Math.acos(parseFloat(document.getElementById('arcocoseno').value)));">Arcocoseno (en radianes) de:</a>&nbsp;&nbsp;<input type="number" min="0" max="1" id="arcocoseno"></p>
+        <p><a href="" onclick="alert(Math.round(parseFloat(document.getElementById('round').value)));">Redondeo de:</a>&nbsp;&nbsp;<input type="number" value="1" id="round"></p>
+        <p><a href="" onclick="alert(Math.floor(parseFloat(document.getElementById('floor').value)));">Redondeo (2) de:</a>&nbsp;&nbsp;<input type="number" value="1" id="floor"></p>
+        <p><a href="" onclick="alert(Math.ceil(parseFloat(document.getElementById('ceil').value)));">Redondeo (3) de:</a>&nbsp;&nbsp;<input type="number" value="1" id="ceil"></p>
+        <p><a href="" onclick="alert(Math.log(parseFloat(document.getElementById('log').value)));">Logaritmo de:</a>&nbsp;&nbsp;<input type="number" value="1" id="log"></p>
+        <p><a href="" onclick="alert(Math.max(parseFloat(document.getElementById('max1').value),parseFloat(document.getElementById('max2').value),parseFloat(document.getElementById('max3').value)));">Máximo de:</a>&nbsp;&nbsp;<input type="number" style="width: 30px" value="1" id="max1"><input type="number" style="width: 30px" value="1" id="max2"><input type="number" style="width: 30px" value="1" id="max3"></p>
+        <p><a href="" onclick="alert(Math.pow(parseFloat(document.getElementById('base').value),parseFloat(document.getElementById('exponente').value)));">Potencia de</a>&nbsp;&nbsp;<input type="number" style="width: 30px" value="1" id="base"> &nbsp;<a href="" onclick="alert(Math.pow(parseFloat(document.getElementById('base').value),parseFloat(document.getElementById('exponente').value)));">elevado a</a>&nbsp; <input type="number" style="width: 30px" value="1" id="exponente"></p>
+    </div>
+</body>
+</html>

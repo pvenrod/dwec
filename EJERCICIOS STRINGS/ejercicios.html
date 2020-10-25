@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+</head>
+<body>
+
+    <script>
+
+        function ejercicio1() {
+
+            var frase = prompt("Introduce una palabra o una frase:");
+            var palabras = frase.split(" ");
+            var palabrasInvertidas = [];
+
+            for (i=0; i<palabras.length; i++) {
+
+                palabrasInvertidas[i] = "";
+
+                for (j=palabras[i].length-1; j>=0; j--) {
+
+                    palabrasInvertidas[i] += palabras[i][j];
+
+                }
+
+                if (palabras[i] == palabrasInvertidas[i]) {
+
+                    console.log("'" + palabras[i] + "' es palíndromo");
+
+                }
+
+                else {
+
+                    console.log("'" + palabras[i] + "' no es palíndromo");
+
+                }
+
+            }
+
+        }
+
+
+
+        function ejercicio2() {
+
+            var frase = prompt("Introduce una palabra o una frase:");
+            var palabras = frase.split(" ");
+
+            console.log("'" + frase + "' tiene " + palabras.length + " palabras");
+
+        }
+
+
+
+        function ejercicio3() {
+
+            var frase = prompt("Introduce una palabra o una frase:").toLowerCase();
+            var alfabeto = "abcdefghijkmnñopqrstuvwxyz";
+
+            for (i=0; i<frase.length; i++) {
+
+                for (j=0; j<alfabeto.length; j++) {
+
+                    if (frase[i] == alfabeto[j]) {
+
+                        alfabeto = alfabeto.replace(alfabeto[j], "");
+
+                    }
+
+                }
+
+            }
+
+            console.log("No has utilizado estas letras: " + alfabeto);
+
+        }
+
+
+
+        function ejercicio4() {
+
+            var frase = prompt("Introduce una palabra o una frase:");
+            var vocales = "aeiou";
+            var consonantes = "bcdfghjklmnñpqrstvwxyz";
+            var numVocales = 0, numConsonantes = 0;
+
+            for (i=0; i<frase.length; i++) {
+
+                for (j=0; j<vocales.length; j++) {
+
+                    if (frase[i] == vocales[j]) {
+                        
+                        numVocales++;
+                        j = vocales.length
+
+                    }
+
+                    else {
+
+                        for (k=0; k<consonantes.length; k++) {
+
+                            if (frase[i] == consonantes[k]) {
+
+                                numConsonantes++;
+                                k = consonantes.length;
+                                j = vocales.length;
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            console.log("'" + frase + "' tiene " + numVocales + " vocales y " + numConsonantes + " consonantes.")
+
+        }
+        
+
+
+        function ejercicio5() {
+
+            var frase = prompt("Introduce una palabra o una frase:");
+            var fraseJunta = "";
+
+            for (i=0; i<frase.length; i++) {
+
+                if (frase[i] != " ") {
+
+                    fraseJunta += frase[i];
+
+                }
+
+            }
+
+            console.log(fraseJunta);
+
+        }
+
+
+        function ejercicio6() {
+
+            var frase = prompt("Introduce una palabra o una frase:");
+            var nuevaFrase = "";
+            var mayus = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ";
+            var minus = "abcdefghijklmnñopqrstuvwxyzáéíóú";
+            var carac = " ¿?¡!_-.,:;()";
+
+            for (i=0; i<frase.length; i++) {
+
+                for (j=0; j<mayus.length; j++) {
+
+                    if (frase[i] == mayus[j]) {
+
+                        nuevaFrase += minus[j];
+                        j = mayus.length;
+
+                    }
+
+                    else if (frase[i] == minus[j]) {
+
+                        nuevaFrase += mayus[j];
+                        j = mayus.length;
+
+                    }
+
+                    else if (frase[i] == carac[j]) {
+
+                        nuevaFrase += carac[j];
+                        j = mayus.length;
+
+                    }
+
+                }
+
+            }
+
+            console.log(nuevaFrase);
+
+        }
+
+
+
+        function ejercicio7() {
+
+            var numero = prompt("Introduce un número del -999 al 999:");
+            var centenas = ["ciento ","doscientos ","trescientos ","cuatrocientos ","quinientos ","seiscientos ","setecientos ","ochocientos ","novecientos "]
+            var decenas = ["dieci","veinti","treinta y ","cuarenta y ","cincuenta y ","sesenta y ","setenta y ","ochenta y ","noventa y "];
+            var unidades = ["uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez"];
+            var resultado = "";
+            var dosUltimos;
+
+            if (numero.length == 3) {
+
+                dosUltimos = numero.substr(1,2);
+
+            }
+
+            else if (numero.length == 2) {
+
+                dosUltimos = numero;
+
+            }
+            
+
+            if (numero.length == 3 && (dosUltimos == '11' || dosUltimos == '12' || 
+                dosUltimos == '13' || dosUltimos == '14' || dosUltimos == '15')) {
+
+                    resultado += centenas[parseInt(numero.substr(0,1) - 1)];
+                    switchEspecial();
+
+            }
+
+            else if (numero.length == 2 && (dosUltimos == '11' || dosUltimos == '12' || 
+                    dosUltimos == '13' || dosUltimos == '14' || dosUltimos == '15')) {
+
+                    switchEspecial();
+
+            }
+            
+            else if (numero.length == 1) {
+
+                resultado += unidades[parseInt(numero.substr(0,1) - 1)];
+
+            } 
+
+            else if (numero.length == 2) {
+
+                resultado += decenas[parseInt(numero.substr(0,1) - 1)];
+                resultado += unidades[parseInt(numero.substr(1,1) - 1)];
+
+            }
+
+            else if (numero.length == 3) {
+
+                resultado += centenas[parseInt(numero.substr(0,1) - 1)];
+                resultado += decenas[parseInt(numero.substr(1,1) - 1)];
+                resultado += unidades[parseInt(numero.substr(2,1) - 1)];
+
+            }
+
+
+            console.log(resultado);
+
+
+            function switchEspecial() {
+
+                switch (dosUltimos) {
+
+                    case '11':
+                        resultado += "once";
+                    break;
+                    case '12':
+                        resultado += "doce";
+                    break;
+                    case '13':
+                        resultado += "trece";
+                    break;
+                    case '14':
+                        resultado += "catorce";
+                    break;
+                    case '15':
+                        resultado += "quince";
+                    break;
+
+                }
+
+            }
+            
+
+        }
+
+    </script>
+
+</body>
+</html>
