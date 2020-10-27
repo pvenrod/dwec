@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios arrays</title>
+</head>
+<body>
+    <script>
+
+        function ejercicio1() {
+
+            var hola = ["hola1","hola2","hola3"];
+            var adios = ["adios1","adios2","adios3"];
+            var holaAdios = [];
+
+            for (i=0; i<hola.length; i++) {
+                holaAdios.push(hola[i]);
+                holaAdios.push(adios[i]);
+            }
+
+            console.log(holaAdios);
+
+        }
+
+
+        function ejercicio2() {
+
+            var hola = ["hola1","hola2","hola3","sobrante1","sobrante2"];
+            var adios = ["adios1","adios2","adios3"];
+            var holaAdios = [];
+
+            if (hola.length >= adios.length) { //Compruebo cual de los dos arrays es el más grande.
+                for (i=0; i<adios.length; i++) {
+                    holaAdios.push(hola[i]);
+                    holaAdios.push(adios[i]);
+                }
+                for (i=adios.length; i<hola.length; i++) {
+                    holaAdios.push(hola[i]);
+                }
+            } else {
+                for (i=0; i<hola.length; i++) {
+                    holaAdios.push(hola[i]);
+                    holaAdios.push(adios[i]);
+                }
+                for (i=hola.length; i<adios.length; i++) {
+                    holaAdios.push(adios[i]);
+                }
+            }
+
+            console.log(holaAdios);
+
+        }
+
+
+        function ejercicio3() {
+
+            var clasi1 = ["a","c","e"];
+            var clasi2 = ["b","d","f"];
+            clasi1 = clasi1.concat(clasi2);
+
+            clasi1.sort();
+
+            console.log(clasi1);
+
+        }
+
+
+        function ejercicio4() {
+
+            var clasi1 = ["a","c","e"];
+            var clasi2 = ["b","d","f"];
+            clasi1 = clasi1.concat(clasi2);
+
+            clasi1.sort();
+            clasi1.reverse(); //Una vez ordenado, le "doy la vuelta" al array.
+
+            console.log(clasi1);
+
+        }
+
+
+        function ejercicio5() {
+
+            var clasi1 = ["a","c","e"];
+            var clasi2 = ["b","d","x"];
+            var clasi3 = ["w","y","z"];
+            var nuevo = [];
+            nuevo = clasi1.concat(clasi2).concat(clasi3);
+
+            nuevo.sort();
+
+            console.log(nuevo);
+
+        }
+
+
+        function ejercicio6() {
+
+            var clasi1 = ["a","c","e","n","ñ","o"];
+            var clasi2 = ["b","d","x"];
+            var clasi3 = ["w","y","z"];
+            var nuevo = [];
+            var i = 0;
+
+            nuevo = clasi1.concat(clasi2).concat(clasi3);
+            nuevo.sort();
+
+            do {
+
+                if (!(nuevo[i] <= "n")) {
+
+                    console.log("menor: " + nuevo[i] );
+
+                }
+
+                i++
+
+            } while (nuevo[i] != "ñ");
+
+            console.log(nuevo);
+
+        }
+
+
+        function ejercicio7() {
+
+            var matriz = new Array();
+
+            console.log(matriz.length);
+
+            for (i=0; i<2; i++) {
+
+                matriz[i] = new Array();
+
+                for (j=0; j<10; j++) {
+
+                    matriz[i][j] = prompt("Introduce un valor para " + i + " x " + j);
+
+                }
+
+                matriz[i].sort();
+
+            }
+
+            matriz[matriz.length] = new Array();
+
+            for (i=0; i<matriz.length; i++) {
+
+                for (j=0; j<matriz[i].length; j++) {
+
+                   matriz[matriz.length][j] = matriz[i][j] * matriz[i+1][j];
+
+                }
+
+            }
+
+            
+
+            console.log(matriz);
+
+        }
+    </script>
+</body>
+</html>
