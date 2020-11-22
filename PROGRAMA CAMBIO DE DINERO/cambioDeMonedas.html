@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var precio = 5;
+        var existencias = [0,0,0,0,0,1,2,3,4,1,2,0,1,1,2];
+        var valorExistencias = [500,200,100,50,20,10,5,2,1,0.5,0.2,0.1,0.05,0.02,0.01];
+        var devuelto = []
+        var introducido = 5.60;
+        var devolver;
+        var maximoPosible;
+        // var sumatoria = 0;
+
+        var noSePuede = false;
+
+        if (introducido > precio) {
+
+            devolver = (introducido - precio).toFixed(2);
+
+            var k=0;
+            while (devolver - valorExistencias[k] < 0) {
+                maximoPosible = k; // Calculo por donde debe empezar a dar el cambio mi bucle for.
+                k++
+            }
+
+            for (i=maximoPosible; i<=existencias.length;i++) { // Recorro todas las monedas desde la máxima posible.
+
+
+               while (existencias[i] > 0 && devolver - valorExistencias[i] >= 0) { // Solo doy cambio si existen existencias de esa moneda y si esa moneda es inferior o igual a la cantidad a devolver.
+
+                   /*  for (j=i; j<=existencias.length-1; j++) {
+
+                        sumatoria += existencias[j] * valorExistencias[j];
+
+                    }
+                    console.log(sumatoria)*/
+
+                    console.log("Queda por devolver: " + devolver);
+
+                    if (devolver-valorExistencias[i]<=valorExistencias[i+1]*existencias[i+1]) {
+                            
+                        // El problema está aquí. Este incremento tiene una condición que no es la adecuada. No se me ocurre ninguna forma de hacerlo.
+                        i++;
+                            
+                    } else {
+                        devolver = (devolver - valorExistencias[i]).toFixed(2);
+                        devuelto.push(valorExistencias[i]);
+                        existencias[i] -= 1;
+                        console.log("Has utilizado " + valorExistencias[i] + " euros.");
+                    }
+
+                    // sumatoria = 0;
+
+                }
+
+                cambioExistenteRestante = 0;
+
+            }
+
+            if (devolver == 0) {
+                alert("Tu cambio: " + devuelto);
+            } else {
+                alert("No se puede devovler el cambio.")
+            }
+        } else if (introducido == precio) {
+            alert("No tengo que devolverte nada.");
+        } else {
+            alert("No has introducido suficiente dinero.");
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DETECTOR DE PLANOS</title>
+</head>
+<body>
+
+    <canvas id="micanvas" onclick="mapear(event)" style="cursor: pointer">
+
+    </canvas>
+
+
+    <script>
+        
+        var canvas = document.getElementById("micanvas");
+        var ctx = canvas.getContext("2d");
+        var mapa = new Image();
+        mapa.src = "img/mapa.jpg";
+        mapa.onload = function() {
+            canvas.width = this.width;
+            canvas.height = this.height;
+            ctx.drawImage(mapa, 0, 0);
+        }
+
+        function mapear(e) {
+            
+            var pixelInicial = ctx.getImageData(e.x,e.y,canvas.width,canvas.height).data;
+            var rojoI = pixelInicial[0];
+            var verdeI = pixelInicial[1];
+            var azulI = pixelInicial[2];
+
+            for (i = e.x; i <= e.x+150; i++) {
+                for (j = e.y; j <= e.y+150; j++) {
+                    var pixel = ctx.getImageData(i,j,canvas.width,canvas.height).data;
+                    var rojo = pixel[0];
+                    var verde = pixel[1];
+                    var azul = pixel[2];
+                    if ((rojo >= rojoI - 50 && rojo <= rojoI + 50) && (verde >= verdeI - 50 && verde <= verdeI + 50) && (azul >= azulI - 50 && azul <= azulI + 50)) {
+                        //Figuras grises
+                        ctx.fillStyle = "#d1d1d1";
+                        ctx.fillRect(i,j,1,1);
+                    } else {
+                        //Contornos rojos
+                        ctx.fillStyle = "#ff0000";
+                        ctx.fillRect(i,j,1,1);
+                    }
+                }
+            }
+        }
+
+    </script>
+
+</body>
+</html>
